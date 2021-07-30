@@ -9,9 +9,30 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     database: mysql
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+          batch_size: 20
+        cache:
+          use_query_cache: false
+          use_second_level_cache: false
+          use_structured_entries: false
+          use_minimal_puts: false
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        event:
+          merge:
+            entity_copy_observer: allow
   sql:
     init:
       platform: mysql
       mode: always
       continue-on-error: true
+      encoding: UTF-8
+server:
+  servlet:
+    context-path: /api/v1

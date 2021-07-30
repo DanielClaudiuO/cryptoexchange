@@ -3,14 +3,11 @@ package com.crypto.exchange.user.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,8 +21,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "user")
-@DynamicUpdate
-@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Id
@@ -45,12 +40,12 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "dateCreated", updatable = false)
+    @Column(name = "date_Created", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date dateCreated;
 
-    @Column(name = "dateModified", updatable = false)
+    @Column(name = "date_Modified", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date dateModified;
@@ -58,6 +53,6 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    @Column(name = "isActive", columnDefinition = "tinyint(1) default 0")
+    @Column(name = "is_Active", columnDefinition = "tinyint(1) default 0")
     private Boolean isActive;
 }
