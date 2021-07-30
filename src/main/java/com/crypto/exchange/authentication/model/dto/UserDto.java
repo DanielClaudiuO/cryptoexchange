@@ -1,4 +1,4 @@
-package com.crypto.exchange.user.model.dto;
+package com.crypto.exchange.authentication.model.dto;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;

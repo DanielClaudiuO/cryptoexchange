@@ -1,4 +1,4 @@
-package com.crypto.exchange.user.model;
+package com.crypto.exchange.authentication.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
