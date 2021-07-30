@@ -53,6 +53,6 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    @Column(name = "is_Active", columnDefinition = "tinyint(1) default 0")
+    @Column(name = "is_active", columnDefinition = "tinyint(1) default 0")
     private Boolean isActive;
 }
