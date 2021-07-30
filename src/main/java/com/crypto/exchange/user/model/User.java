@@ -40,12 +40,12 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "date_Created", updatable = false)
+    @Column(name = "date_created", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date dateCreated;
 
-    @Column(name = "date_Modified", updatable = false)
+    @Column(name = "date_modified", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date dateModified;

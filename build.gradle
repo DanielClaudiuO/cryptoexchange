@@ -1,3 +1,4 @@
+import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id 'org.springframework.boot' version '2.5.3'
@@ -19,10 +20,10 @@ repositories {
     mavenCentral()
 }
 
-def activeProfiles=project.properties['activeProfiles'] ?: "dev" // set default (dev) profile if no profile is passed as property
+def activeProfiles = project.properties["activeProfiles"] ?: "dev" // set default (dev) profile if no profile is passed as property
 
 processResources {
-    filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [
+    filter ReplaceTokens, tokens: [
             activeProfiles: activeProfiles
     ]
 }
