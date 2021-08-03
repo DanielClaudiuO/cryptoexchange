@@ -33,6 +33,12 @@ spring:
       mode: always
       continue-on-error: true
       encoding: UTF-8
+  mail:
+    host: smtp.mailtrap.io
+    port: 25
+    username:
+    password:
+    protocol: smtp
 server:
   servlet:
     context-path: /api/v1

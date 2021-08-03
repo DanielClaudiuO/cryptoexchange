@@ -1,5 +1,6 @@
 package com.crypto.exchange.authentication.model;
 
+import com.crypto.exchange.common.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -53,7 +54,7 @@ public class User {
     private Date dateModified;
 
     @Column(name = "role")
-    private String role;
+    private Role role;
 
     @Column(name = "is_active", columnDefinition = "tinyint(1) default 0")
     private Boolean isActive;
