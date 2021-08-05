@@ -33,6 +33,6 @@ public class VerificationToken {
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
     private User user;
 
-    @Column(name = "expiry_date")
+    @Column(name = "expiryDate")
     private Instant expiryDate;
 }

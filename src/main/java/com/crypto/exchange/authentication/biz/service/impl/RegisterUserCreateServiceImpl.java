@@ -44,6 +44,7 @@ public class RegisterUserCreateServiceImpl implements RegisterUserCreateService 
         user.setDateCreated(new Date());
         user.setDateModified(new Date());
         user.setRole(ADMIN);
+        user.setIsActive(false);
         userRepository.save(user);
         var token = generateVerificationToken(user);
         var notificationEmail = new NotificationEmail(MSG_SUBJECT, user.getEmail(), MSG_SIGN_UP + MSG_URL_INSTRUCTIONS + ACTIVATION_URL + token);

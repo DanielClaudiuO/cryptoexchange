@@ -45,12 +45,12 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "date_created", updatable = false)
+    @Column(name = "dateCreated", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date dateCreated;
 
-    @Column(name = "date_modified", updatable = false)
+    @Column(name = "dateModified", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date dateModified;
@@ -59,6 +59,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column(name = "is_active", columnDefinition = "tinyint(1) default 0")
+    @Column(name = "isActive", columnDefinition = "tinyint(1) default 0")
     private Boolean isActive;
 }

@@ -19,12 +19,12 @@ public class RegisterUserTokenServiceImpl implements RegisterUserTokenService {
 
     @Override
     public void verifyAccount(String token) {
-        Optional<VerificationToken> verificationToken = verificationTokenRepository.getToken(token);
+        Optional<VerificationToken> verificationToken = verificationTokenRepository.findByToken(token);
         fetchUserAndEnable(verificationToken.orElseThrow(() -> new EmailFailureException("Invalid Token")));
     }
 
     private void fetchUserAndEnable(VerificationToken verificationToken) {
-        String username = verificationToken.getUser().getUsername();
+        var username = verificationToken.getUser().getUsername();
         var user = userRepository.findByUsername(username).orElseThrow(() -> new EmailFailureException("User not found with name - " + username));
         user.setIsActive(true);
         userRepository.save(user);
