@@ -26,7 +26,7 @@ public class RegisterUserCreateServiceImpl implements RegisterUserCreateService 
     private static final String MSG_SUBJECT = "Please Activate";
     private static final String MSG_SIGN_UP = "Thank you for signing up to the platform ";
     private static final String MSG_URL_INSTRUCTIONS = "please click on the below url to activate your account :";
-    private static final String ACTIVATION_URL = "http://localhost:8080/api/v1/users/";
+    private static final String ACTIVATION_URL = "http://localhost:8080/api/v1/users/verification/";
 
     private final UserRepository userRepository;
     private final RegisterUserValidationService registerUserValidationService;

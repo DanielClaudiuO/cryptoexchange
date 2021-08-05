@@ -6,7 +6,6 @@ import com.crypto.exchange.authentication.biz.service.RegisterUserTokenService;
 import com.crypto.exchange.authentication.exception.EmailFailureException;
 import com.crypto.exchange.authentication.model.VerificationToken;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,22 +14,19 @@ import java.util.Optional;
 @AllArgsConstructor
 public class RegisterUserTokenServiceImpl implements RegisterUserTokenService {
 
-    @Autowired
-    VerificationTokenRepository verificationTokenRepository;
+    private final UserRepository userRepository;
+    private final VerificationTokenRepository verificationTokenRepository;
 
-    @Autowired
-    UserRepository userRepository;
+    @Override
+    public void verifyAccount(String token) {
+        Optional<VerificationToken> verificationToken = verificationTokenRepository.getToken(token);
+        fetchUserAndEnable(verificationToken.orElseThrow(() -> new EmailFailureException("Invalid Token")));
+    }
 
     private void fetchUserAndEnable(VerificationToken verificationToken) {
         String username = verificationToken.getUser().getUsername();
         var user = userRepository.findByUsername(username).orElseThrow(() -> new EmailFailureException("User not found with name - " + username));
         user.setIsActive(true);
         userRepository.save(user);
-    }
-
-    @Override
-    public void verifyAccount(String token) {
-        Optional<VerificationToken> verificationToken = verificationTokenRepository.findByToken(token);
-        fetchUserAndEnable(verificationToken.orElseThrow(() -> new EmailFailureException("Invalid Token")));
     }
 }

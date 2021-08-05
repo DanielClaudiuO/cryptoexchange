@@ -6,6 +6,7 @@ import com.crypto.exchange.authentication.biz.service.RegisterUserTokenService;
 import com.crypto.exchange.authentication.exception.UserFoundException;
 import com.crypto.exchange.authentication.model.User;
 import com.crypto.exchange.authentication.model.dto.UserDto;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/users")
+@AllArgsConstructor
 public class AuthController {
 
     @Autowired
@@ -29,7 +31,7 @@ public class AuthController {
     private RegisterUserSearchService registerUserSearchService;
 
     @Autowired
-    private RegisterUserTokenService registerUserAuthenticateService;
+    private RegisterUserTokenService registerUserTokenService;
 
     @PostMapping
     @ExceptionHandler(UserFoundException.class)
@@ -43,9 +45,9 @@ public class AuthController {
         return new ResponseEntity<>(registerUserSearchService.findUserByEmail(email), HttpStatus.OK);
     }
 
-    @GetMapping("/accountVerification/{token}")
+    @GetMapping("verification/{token}")
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
-        registerUserAuthenticateService.verifyAccount(token);
+        registerUserTokenService.verifyAccount(token);
         return new ResponseEntity<>("Account Activated Successfully", HttpStatus.OK);
     }
 
