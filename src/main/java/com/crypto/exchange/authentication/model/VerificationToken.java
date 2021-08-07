@@ -33,4 +33,8 @@ public class VerificationToken {
 
     @Column(name = "expiryDate")
     private Instant expiryDate;
+
+    @Column(name = "createdDate")
+    private Instant createdDate;
+
 }

@@ -1,5 +1,6 @@
 package com.crypto.exchange.authentication.biz.service.impl;
 
+import com.crypto.exchange.authentication.biz.service.MailContentBuilder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
@@ -7,7 +8,7 @@ import org.thymeleaf.context.Context;
 
 @Service
 @AllArgsConstructor
-public class MailContentBuilder {
+public class MailContentBuilderImpl implements MailContentBuilder {
 
     private final TemplateEngine templateEngine;
 

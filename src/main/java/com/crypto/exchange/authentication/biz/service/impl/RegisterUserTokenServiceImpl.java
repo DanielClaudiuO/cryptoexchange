@@ -4,10 +4,13 @@ import com.crypto.exchange.authentication.biz.repository.UserRepository;
 import com.crypto.exchange.authentication.biz.repository.VerificationTokenRepository;
 import com.crypto.exchange.authentication.biz.service.RegisterUserTokenService;
 import com.crypto.exchange.authentication.exception.EmailFailureException;
+import com.crypto.exchange.authentication.exception.TokenExpiredException;
+import com.crypto.exchange.authentication.exception.UserNotFoundException;
 import com.crypto.exchange.authentication.model.VerificationToken;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Optional;
 
 @Service
@@ -24,9 +27,18 @@ public class RegisterUserTokenServiceImpl implements RegisterUserTokenService {
     }
 
     private void fetchUserAndEnable(VerificationToken verificationToken) {
-        var username = verificationToken.getUser().getUsername();
-        var user = userRepository.findByUsername(username).orElseThrow(() -> new EmailFailureException("User not found with name - " + username));
+        validateToken(verificationToken);
+        var email = verificationToken.getUser().getEmail();
+        var user = userRepository.findUserByEmail(email).orElseThrow(UserNotFoundException::new);
         user.setIsActive(true);
+        verificationToken.setExpiryDate(Instant.now());
+        verificationTokenRepository.save(verificationToken);
         userRepository.save(user);
+    }
+
+    private void validateToken(VerificationToken verificationToken) {
+        if (verificationToken.getExpiryDate().isBefore(Instant.now())) {
+            throw new TokenExpiredException();
+        }
     }
 }

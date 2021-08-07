@@ -39,7 +39,7 @@ public class AuthController {
         return new ResponseEntity<>(registerUserSearchService.findUserByEmail(email), HttpStatus.OK);
     }
 
-    @GetMapping("verification/{token}")
+    @GetMapping("/{token}")
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         registerUserTokenService.verifyAccount(token);
         return new ResponseEntity<>("Account Activated Successfully", HttpStatus.OK);
