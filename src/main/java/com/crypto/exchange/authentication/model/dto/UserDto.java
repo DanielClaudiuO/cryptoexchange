@@ -1,5 +1,6 @@
-package com.crypto.exchange.user.model.dto;
+package com.crypto.exchange.authentication.model.dto;
 
+import com.crypto.exchange.common.enums.Role;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
@@ -30,7 +31,7 @@ public class UserDto {
     private Date dateModified;
 
     @SerializedName("role")
-    private String role;
+    private Role role;
 
     @SerializedName("isActive")
     private Boolean isActive;

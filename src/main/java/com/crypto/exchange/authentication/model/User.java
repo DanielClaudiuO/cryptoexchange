@@ -1,5 +1,6 @@
-package com.crypto.exchange.user.model;
+package com.crypto.exchange.authentication.model;
 
+import com.crypto.exchange.common.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,19 +45,20 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "date_created", updatable = false)
+    @Column(name = "dateCreated", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date dateCreated;
 
-    @Column(name = "date_modified", updatable = false)
+    @Column(name = "dateModified", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date dateModified;
 
     @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    @Column(name = "is_active", columnDefinition = "tinyint(1) default 0")
+    @Column(name = "isActive", columnDefinition = "tinyint(1) default 0")
     private Boolean isActive;
 }
