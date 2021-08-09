@@ -1,5 +1,6 @@
 package com.crypto.exchange.authentication.biz.service.impl;
 
+import com.crypto.exchange.authentication.biz.service.MailContentBuilder;
 import com.crypto.exchange.authentication.biz.service.MailService;
 import com.crypto.exchange.authentication.exception.EmailFailureException;
 import com.crypto.exchange.authentication.model.NotificationEmail;
@@ -21,12 +22,12 @@ import javax.mail.internet.MimeMessage;
 public class MailServiceImpl implements MailService {
 
     private final JavaMailSender mailSender;
+    private final MailContentBuilder mailContentBuilder;
 
     @Async
     @Override
     public void sendMail(NotificationEmail notificationEmail) {
         MimeMessagePreparator mimeMessagePreparator = mimeMessage -> buildEmail(notificationEmail, mimeMessage);
-
         try {
             mailSender.send(mimeMessagePreparator);
             log.info("Activation email sent!!");
@@ -37,10 +38,10 @@ public class MailServiceImpl implements MailService {
     }
 
     private void buildEmail(NotificationEmail notificationEmail, MimeMessage mimeMessage) throws MessagingException {
+        mimeMessage.setContent(mailContentBuilder.build(notificationEmail.getBody(), notificationEmail.getLink()), "text/html");
         var messageHelper = new MimeMessageHelper(mimeMessage);
         messageHelper.setFrom("daniel.oanta@email.com");
         messageHelper.setTo(notificationEmail.getRecipient());
         messageHelper.setSubject(notificationEmail.getSubject());
-        messageHelper.setText(notificationEmail.getBody());
     }
 }

@@ -12,9 +12,10 @@ public class MailContentBuilderImpl implements MailContentBuilder {
 
     private final TemplateEngine templateEngine;
 
-    public String build(String message) {
+    public String build(String message, String link) {
         var context = new Context();
         context.setVariable("message", message);
+        context.setVariable("link", link);
         return templateEngine.process("mailTemplate", context);
     }
 }

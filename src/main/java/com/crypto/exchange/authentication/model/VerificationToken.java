@@ -1,6 +1,7 @@
 package com.crypto.exchange.authentication.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

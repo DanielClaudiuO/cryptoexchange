@@ -49,8 +49,7 @@ public class RegisterUserCreateServiceImpl implements RegisterUserCreateService 
         user.setIsActive(false);
         userRepository.save(user);
         var token = generateVerificationToken(user);
-        var notificationEmail = new NotificationEmail(MSG_SUBJECT, user.getEmail(), MSG_SIGN_UP + MSG_URL_INSTRUCTIONS + ACTIVATION_URL + token);
-        mailContentBuilder.build(notificationEmail.getBody());
+        var notificationEmail = new NotificationEmail(MSG_SUBJECT, user.getEmail(), MSG_SIGN_UP + MSG_URL_INSTRUCTIONS, ACTIVATION_URL + token);
         mailService.sendMail(notificationEmail);
 
     }

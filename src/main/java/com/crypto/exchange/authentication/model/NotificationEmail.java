@@ -12,4 +12,5 @@ public class NotificationEmail {
     private String subject;
     private String recipient;
     private String body;
+    private String link;
 }
