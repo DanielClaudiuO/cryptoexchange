@@ -1,10 +1,12 @@
 package com.crypto.exchange.authentication.controller;
 
+import com.crypto.exchange.authentication.biz.service.LoginService;
 import com.crypto.exchange.authentication.biz.service.RegisterUserCreateService;
 import com.crypto.exchange.authentication.biz.service.RegisterUserSearchService;
 import com.crypto.exchange.authentication.biz.service.RegisterUserTokenService;
 import com.crypto.exchange.authentication.exception.UserFoundException;
 import com.crypto.exchange.authentication.model.User;
+import com.crypto.exchange.authentication.model.dto.LoginDto;
 import com.crypto.exchange.authentication.model.dto.UserDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,7 @@ public class AuthController {
     private final RegisterUserCreateService registerUserCreateService;
     private final RegisterUserSearchService registerUserSearchService;
     private final RegisterUserTokenService registerUserTokenService;
+    private final LoginService loginService;
 
     @PostMapping
     @ExceptionHandler(UserFoundException.class)
@@ -43,6 +46,11 @@ public class AuthController {
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         registerUserTokenService.verifyAccount(token);
         return new ResponseEntity<>("Account Activated Successfully", HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> login(@RequestBody LoginDto loginDto) {
+        return new ResponseEntity<>(loginService.login(loginDto), HttpStatus.OK);
     }
 
 }
