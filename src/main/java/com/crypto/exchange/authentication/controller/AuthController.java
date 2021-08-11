@@ -63,7 +63,7 @@ public class AuthController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserDto> findUserById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(getByIdService.getByIdService(id), HttpStatus.OK);
+        return new ResponseEntity<>(getByIdService.getUserById(id), HttpStatus.OK);
     }
 
     @PutMapping
