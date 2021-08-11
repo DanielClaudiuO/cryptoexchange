@@ -15,7 +15,7 @@ public class GetUserByIdServiceImpl implements GetUserByIdService {
     private final UserMapper userMapper;
 
     @Override
-    public UserDto getByIdService(Long id) {
+    public UserDto getUserById(Long id) {
         return userMapper.map(userRepository.findById(id).orElse(null));
     }
 }

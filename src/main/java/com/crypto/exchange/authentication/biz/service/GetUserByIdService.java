@@ -4,5 +4,5 @@ import com.crypto.exchange.authentication.model.dto.UserDto;
 
 public interface GetUserByIdService {
 
-    UserDto getByIdService(Long id);
+    UserDto getUserById(Long id);
 }
