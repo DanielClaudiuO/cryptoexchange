@@ -36,7 +36,6 @@ public class RegisterUserCreateServiceImpl implements RegisterUserCreateService 
     private final PasswordEncoder passwordEncoder;
     private final VerificationTokenRepository verificationTokenRepository;
     private final MailServiceImpl mailService;
-    private final MailContentBuilderImpl mailContentBuilder;
 
     @Override
     public void registerUser(UserDto userDto) throws EmailAlreadyTakenException {
@@ -49,7 +48,8 @@ public class RegisterUserCreateServiceImpl implements RegisterUserCreateService 
         user.setIsActive(false);
         userRepository.save(user);
         var token = generateVerificationToken(user);
-        var notificationEmail = new NotificationEmail(MSG_SUBJECT, user.getEmail(), MSG_SIGN_UP + MSG_URL_INSTRUCTIONS, ACTIVATION_URL + token);
+        var notificationEmail = new NotificationEmail(MSG_SUBJECT, user
+                .getEmail(), MSG_SIGN_UP + MSG_URL_INSTRUCTIONS, ACTIVATION_URL + token);
         mailService.sendMail(notificationEmail);
 
     }
