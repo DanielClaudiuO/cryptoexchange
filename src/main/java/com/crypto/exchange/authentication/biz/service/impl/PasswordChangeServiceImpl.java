@@ -4,7 +4,7 @@ import com.crypto.exchange.authentication.biz.mapper.UserMapper;
 import com.crypto.exchange.authentication.biz.repository.UserRepository;
 import com.crypto.exchange.authentication.biz.service.PasswordChangeService;
 import com.crypto.exchange.authentication.exception.InvalidPasswordException;
-import com.crypto.exchange.authentication.exception.UserFoundException;
+import com.crypto.exchange.authentication.exception.UserNotFoundException;
 import com.crypto.exchange.authentication.model.dto.PasswordChangeDto;
 import com.crypto.exchange.authentication.model.dto.UserDto;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class PasswordChangeServiceImpl implements PasswordChangeService {
         var user = repository.findById(id).orElse(null);
 
         if (user == null) {
-            throw new UserFoundException();
+            throw new UserNotFoundException();
         }
         if (!passwordEncoder.matches(passwordDto.getOldPassword(), user.getPassword())) {
             throw new InvalidPasswordException();

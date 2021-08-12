@@ -49,6 +49,16 @@ public class AuthController {
         return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> login(@RequestBody LoginDto loginDto) {
+        return new ResponseEntity<>(loginService.login(loginDto), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<UserDto> findUserById(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(getByIdService.getUserById(id), HttpStatus.OK);
+    }
+
     @GetMapping(params = "email")
     public ResponseEntity<User> findUserByEmail(@RequestParam(value = "email") String email) {
         return new ResponseEntity<>(registerUserSearchService.findUserByEmail(email), HttpStatus.OK);
@@ -60,19 +70,9 @@ public class AuthController {
         return new ResponseEntity<>("Account Activated Successfully", HttpStatus.OK);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<UserDto> login(@RequestBody LoginDto loginDto) {
-        return new ResponseEntity<>(loginService.login(loginDto), HttpStatus.OK);
-    }
-
     @PatchMapping("/{id}/password")
     public ResponseEntity<UserDto> passwordChange(@PathVariable Long id, @RequestBody PasswordChangeDto passwordChangeDto) {
         return new ResponseEntity<>(passwordChangeService.changePassword(id, passwordChangeDto), HttpStatus.OK);
-    }
-
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<UserDto> findUserById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(getByIdService.getUserById(id), HttpStatus.OK);
     }
 
     @PutMapping
