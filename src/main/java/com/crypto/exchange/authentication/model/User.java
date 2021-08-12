@@ -50,7 +50,7 @@ public class User {
     @CreatedDate
     private Date dateCreated;
 
-    @Column(name = "dateModified", updatable = false)
+    @Column(name = "dateModified")
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date dateModified;
