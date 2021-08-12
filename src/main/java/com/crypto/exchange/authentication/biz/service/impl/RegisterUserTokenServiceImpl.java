@@ -28,8 +28,7 @@ public class RegisterUserTokenServiceImpl implements RegisterUserTokenService {
 
     private void fetchUserAndEnable(VerificationToken verificationToken) {
         validateToken(verificationToken);
-        var email = verificationToken.getUser().getEmail();
-        var user = userRepository.findUserByEmail(email).orElseThrow(UserNotFoundException::new);
+        var user = userRepository.findById(verificationToken.getUserId()).orElseThrow(UserNotFoundException::new);
         user.setIsActive(true);
         verificationToken.setExpiryDate(Instant.now());
         verificationTokenRepository.save(verificationToken);
