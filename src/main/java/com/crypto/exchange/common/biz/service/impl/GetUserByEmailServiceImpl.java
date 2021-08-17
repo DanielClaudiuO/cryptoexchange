@@ -1,7 +1,7 @@
-package com.crypto.exchange.authentication.biz.service.impl;
+package com.crypto.exchange.common.biz.service.impl;
 
 import com.crypto.exchange.authentication.biz.repository.UserRepository;
-import com.crypto.exchange.authentication.biz.service.RegisterUserSearchService;
+import com.crypto.exchange.common.biz.service.GetUserByEmailService;
 import com.crypto.exchange.authentication.exception.UserFoundException;
 import com.crypto.exchange.authentication.model.User;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class RegisterUserSearchServiceImpl implements RegisterUserSearchService {
+public class GetUserByEmailServiceImpl implements GetUserByEmailService {
 
     private final UserRepository userRepository;
 

@@ -32,10 +32,5 @@ public class Wallet {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "walletId")
-    private List<CryptoWallet> cryptoWallet;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "walletId")
-    private List<FiatWallet> fiatWallets;
-
+    private List<Asset> assets;
 }

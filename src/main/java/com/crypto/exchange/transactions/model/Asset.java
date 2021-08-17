@@ -17,9 +17,8 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Accessors(chain = true)
-@Table(name = "fiat_wallet")
-
-public class FiatWallet {
+@Table(name = "asset")
+public class Asset {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,4 +30,10 @@ public class FiatWallet {
 
     @Column(name = "balance")
     private double balance;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "type")
+    private String type;
 }
