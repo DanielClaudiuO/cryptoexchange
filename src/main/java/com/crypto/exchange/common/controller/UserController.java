@@ -5,9 +5,9 @@ import com.crypto.exchange.authentication.model.dto.UserDto;
 import com.crypto.exchange.common.biz.service.DeleteUserService;
 import com.crypto.exchange.common.biz.service.GetUserByEmailService;
 import com.crypto.exchange.common.biz.service.GetUserByIdService;
-import com.crypto.exchange.common.biz.service.PasswordChangeService;
+import com.crypto.exchange.common.biz.service.ChangePasswordService;
 import com.crypto.exchange.common.biz.service.UpdateUserService;
-import com.crypto.exchange.common.model.dto.PasswordChangeDto;
+import com.crypto.exchange.common.model.dto.ChangePasswordDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class UserController {
 
-    private final PasswordChangeService passwordChangeService;
+    private final ChangePasswordService passwordChangeService;
     private final GetUserByEmailService registerUserSearchService;
     private final GetUserByIdService getByIdService;
     private final UpdateUserService updateService;
@@ -48,7 +48,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}/password")
-    public ResponseEntity<UserDto> passwordChange(@PathVariable Long id, @RequestBody PasswordChangeDto passwordChangeDto) {
+    public ResponseEntity<UserDto> passwordChange(@PathVariable Long id, @RequestBody ChangePasswordDto passwordChangeDto) {
         return new ResponseEntity<>(passwordChangeService.changePassword(id, passwordChangeDto), HttpStatus.OK);
     }
 

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 @Data
-public class PasswordChangeDto {
+public class ChangePasswordDto {
 
     @SerializedName("oldPassword")
     private String oldPassword;
