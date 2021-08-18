@@ -1,4 +1,4 @@
-package com.crypto.exchange.authentication.biz.service;
+package com.crypto.exchange.common.biz.service;
 
 import com.crypto.exchange.authentication.model.dto.UserDto;
 

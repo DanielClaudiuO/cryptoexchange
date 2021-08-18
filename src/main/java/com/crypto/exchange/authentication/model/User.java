@@ -1,6 +1,7 @@
 package com.crypto.exchange.authentication.model;
 
 import com.crypto.exchange.common.enums.Role;
+import com.crypto.exchange.transactions.model.Wallet;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,6 +17,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -61,4 +64,7 @@ public class User {
 
     @Column(name = "isActive", columnDefinition = "tinyint(1) default 0")
     private Boolean isActive;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Wallet wallet;
 }

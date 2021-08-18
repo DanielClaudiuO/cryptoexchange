@@ -1,7 +1,7 @@
-package com.crypto.exchange.authentication.biz.service.impl;
+package com.crypto.exchange.common.biz.service.impl;
 
 import com.crypto.exchange.authentication.biz.repository.UserRepository;
-import com.crypto.exchange.authentication.biz.service.DeleteUserService;
+import com.crypto.exchange.common.biz.service.DeleteUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
